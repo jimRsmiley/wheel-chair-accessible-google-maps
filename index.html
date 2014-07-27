@@ -46,12 +46,26 @@
 	</script>
 </head>
 <body>
+	<div class="mobile-intro">
+		<div class="hide">
+			<h1>Prototype Google Maps Wheelchair Accessible Transit Route Checker</h1>
+			<p>Best viewed on desktop/tablet. When given valid from/to points the app suggests whether Google route planner supplies an accessible or inaccessible route. Started at the <a href='https://twitter.com/search?q=%23hack4access&src=typd'>#Hack4Access</a> hackathon by <a href='https://twitter.com/jimRsmiley'>@jimRsmiley</a> and continued by Girl Develop It Philly's Summer of Open Source fellows Sally Kong, LeeAnn Kinney and Erin O'Brien.</p>
+		</div>
+		<p class="hide-show" data-text-swap="[Show intro]" data-text-original="[Hide intro]">[Hide intro]</p>
+		<div class="searchRoute">
+			<label for="startAddress" class="hidden">start address</label>
+			<input id="startAddress" type="text" value="" placeholder="Enter start address"/>
+			<label for="endAddress" class="hidden">end address</label>
+			<input id="endAddress" type="text" value="" placeholder="Enter end address"/>
+			<input type="submit" name="submit" value="submit" onClick="updateHistory(startAddress,endAddress); return getDirections();"/>
+		</div>
+	</div>
 	<div class="intro draggable">
 		<div class="hide">
 			<h1>Prototype Google Maps Wheelchair Accessible Transit Route Checker</h1>
-			<p>Best viewed on desktop/tablet. When given valid from/to points the app suggests whether Google route planner supplies an accessible or inaccessible route. Started at the <a href='https://twitter.com/search?q=%23hack4access&src=typd'>#Hack4Access</a> hackathon by <a href='https://twitter.com/jimRsmiley'>@jimRsmiley</a> and continued by Girl Develop It Philly's Summer of Open Source fellows Sally Kong, LeeAnn Kinney and Erin O'Brien. Please leave feedback and comments below.</p>
+			<p>Best viewed on desktop/tablet. When given valid from/to points the app suggests whether Google route planner supplies an accessible or inaccessible route. Started at the <a href='https://twitter.com/search?q=%23hack4access&src=typd'>#Hack4Access</a> hackathon by <a href='https://twitter.com/jimRsmiley'>@jimRsmiley</a> and continued by Girl Develop It Philly's Summer of Open Source fellows Sally Kong, LeeAnn Kinney and Erin O'Brien.</p>
 		</div>
-		<p id="hide">Hide/show intro</p>
+		<p class="hide-show" data-text-swap="[Show intro]" data-text-original="[Hide intro]">[Hide intro]</p>
 		<div class="searchRoute">
 			<label for="startAddress" class="hidden">start address</label>
 			<input id="startAddress" type="text" value="" placeholder="Enter start address"/>
@@ -72,10 +86,16 @@
 	</script>
 	<script>
 		$(document).ready(function(){
-			$("#hide").click(function(){
+			$(".hide-show").click(function(){
 				$(".hide").toggle();
 			});
 		});
+		$(".hide-show").on("click", function() {
+			var el = $(this);
+			el.text() == el.data("text-swap") 
+			? el.text(el.data("text-original")) 
+			: el.text(el.data("text-swap"));
+			});
 	</script>
 </body>
 
